@@ -1,0 +1,15 @@
+# Ignore everything here
+*
+
+# except
+!.gitignore
+!.vimrc
+!.xinitrc
+!README
+
+!.tmux/**
+!.colors/ttz/**
+!.vimperator/colors/ttz.vimp
+!.vimperator/.vimperratorrc
+!.config/**
+
