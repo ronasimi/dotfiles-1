@@ -6,8 +6,8 @@
 !.gitignore
 !bspwm/
 !bspwm/*
-!bspwm/*/panel
-!bspwm/*/panel/**
+!bspwm/panel
+!bspwm/panel/*
 !mpv/
 !mpv/*
 !ncmpcpp/

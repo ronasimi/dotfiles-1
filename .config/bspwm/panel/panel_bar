@@ -1,0 +1,172 @@
+#!/bin/zsh
+
+. panel_colors # source colors
+
+function battery()
+{
+	BAT=`acpi -b | awk '{gsub(/%,/,""); print $4}' | sed 's/%//g'`
+	STATUS=`acpi -b | awk '{gsub(/,/,""); print $3}'`
+	LEVEL=$(acpi | awk '{print $4}' | cut -d ',' -f 1)
+
+	if [[ $STATUS != "Discharging" ]]; then {
+		if [[ $BAT != 100 ]]; then {
+			battery="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR4} AC %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+		} else {
+			battery="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR5} AC %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+		} fi;
+	} elif [[ $BAT -lt 10 ]]; then {
+		battery="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR5} bat %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+	} elif [[ $BAT -lt 100 ]]; then {
+			battery="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR4} bat %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+	} else {
+		battery="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR5} bat %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+	} fi; print $battery
+}
+
+function mailcount()
+{
+	MAILCOUNT=$(cat /home/ttzhou/.mailcount)
+	# Set Icon
+	#mailicon=""
+	if [[ $MAILCOUNT -eq 0 ]]; then {
+		mail="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR6} mail %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $(cat /home/ttzhou/.mailcount) %{F-}%{B-}"
+	} else {
+		mail="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR5} mail %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $(cat /home/ttzhou/.mailcount) %{F-}%{B-}"
+	} fi; print $mail
+}
+
+function volume()
+{
+	VOLLVL=$(exec amixer get Master | egrep -o "[0-9]+%" | egrep -o "[0-9]*" | head -n 1)
+	MUTE=$(exec amixer get Master | egrep -o "off" | head -n 1)
+	# Set Icon
+	#volicon=""
+	if [[ $MUTE -eq "off" ]]; then {
+		volume="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR6} vol %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $VOLLVL %{F-}%{B-}"
+	} else {
+		volume="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR5} vol %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $VOLLVL %{F-}%{B-}"
+	} fi; print $volume
+}
+
+function pkgcount()
+{
+	PKGCOUNT=$(exec wc -l /home/ttzhou/.pacupdates | sed 's/\([0-9]*\) .*/\1/g')
+	# Set Icon
+	#pkgicon=""
+	if [[ $PKGCOUNT -eq 0 ]]; then {
+		updates="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR6} pkg %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} ${PKGCOUNT} %{F-}%{B-}"
+	} else {
+		updates="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR5} pkg %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} ${PKGCOUNT} %{F-}%{B-}"
+	} fi; print $updates
+}
+
+function nowplaying()
+{
+	SONG=$(mpc current)
+	ALBUM=$(mpc status -f %album% | sed 's/\(.*\)/\L\1/g' | head -n 1)
+	ARTIST=$(mpc current | sed 's/\(.*\)/\L\1/g' | cut -d '-' -f 1 | sed 's/[ \t]*$//g')
+	TITLE=$(mpc current | sed 's/\(.*\)/\L\1/g' | cut -d '-' -f 2 | sed 's/^\s*//g')
+	STATUS=$(mpc status | cut -d '' -f 1 | tr '\n' ' ' | cut -d '[' -f 2 | cut -d ']' -f 1)
+
+	if [ -z "$SONG" ]; then {
+		music="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR9} mpc %{F-}%{B-}%{F$COLOR1}▒%{F-}%{B$COLOR1}%{F$COLOR6} artist %{F-}%{B-}%{B$COLOR2}%{F$COLOR6} song %{F-}%{B-}%{B$COLOR1}%{F$COLOR6} album %{F-}%{B-}"
+	} else {
+		case $STATUS in
+			"playing")
+				music="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR5} mpc %{F-}%{B-}%{F$COLOR1}▒%{F-}%{B$COLOR1}%{F$COLOR9} ${ARTIST} %{F-}%{B-}%{B$COLOR2}%{F$COLOR4} ${TITLE} %{F-}%{B-}%{B$COLOR1}%{F$COLOR9} ${ALBUM} %{F-}%{B-}"
+				;;
+			"paused")
+				music="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR9} mpc %{F-}%{B-}%{F$COLOR1}▒%{F-}%{B$COLOR1}%{F$COLOR6} ${ARTIST} %{F-}%{B-}%{B$COLOR2}%{F$COLOR6} ${TITLE} %{F-}%{B-}%{B$COLOR1}%{F$COLOR6} ${ALBUM} %{F-}%{B-}"
+				;;
+		esac
+	} fi; print $music
+}
+
+function netwk()
+{
+	NETWK=$(wpa_cli -i wlp12s0 status | sed -n 's/^ssid=//p')
+	#STRENGTH=$(sudo cat /proc/net/wireless | tr '\n' ' ' | sed 's/.*wlp12s0: .*\?\(-[0-9][0-9]\)\. .*/\1/g' | cut -d '%' -f 1)
+
+	if [ -z "$NETWK" ]; then {
+		wifi="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR6} net %{F-}%{B-}%{F$COLOR2}▒%{F-}%{B$COLOR2}%{F$COLOR9} --- %{F-}%{B-}"
+	} else {
+		wifi="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR6} net %{F-}%{B-}%{F$COLOR2}▒%{F-}%{B$COLOR2}%{F$COLOR9} $NETWK %{F-}%{B-}"
+		#wifi="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR5} net %{F-}%{B-}%{F$COLOR2}▒%{F-}%{B$COLOR2}%{F$COLOR9} $NETWK %{F-}%{B-}%{B$COLOR1}%{F$COLOR9} $STRENGTH %{F-}%{B-}"
+	} fi; print $wifi
+}
+
+function weather()
+{
+	COND=$(cat /home/ttzhou/.weather | cut -d ':' -f 1)
+	TEMP=$(cat /home/ttzhou/.weather | cut -d ':' -f 2 | cut -d ' ' -f 2)
+	print "%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR6} $TEMP %{F-}%{B-}%{B$COLOR2}%{F$COLOR9} $COND %{F-}%{B-}"
+}
+
+while read -r line ; do
+	case $line in
+		S*)
+			clock="%{B$COLOR0} %{B-}%{B$COLOR2}%{F$COLOR6} $(date +"%b %d") %{F-}%{B-}%{B$COLOR1}%{F$COLOR6} $(date +"%a") %{F-}%{B-}%{B$COLOR0}%{F$COLOR3}${line#?} %{F-}%{B-}"
+			sys_info="%{r} $(netwk) $(volume) $(pkgcount) $(battery) $(weather) $clock" # Right side sys bar
+			;;
+		W*)
+			main_wm_infos=""
+			ext_wm_infos=""
+			desk=""
+			line=(${(s/:/)${line[2,-1]}})
+
+			for item in $line; do
+				name=${item[2,-1]}
+				case $item in
+					[Mm]*)
+						mon=${name}
+						[[ $item = "MLaptop" ]] && desk="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR3} ${mon} %{F-}%{B-}%{B$COLOR0} %{B-}%{B$COLOR2} %{B-}"
+						[[ $item = "MExternal" ]] && desk="%{B$COLOR0} %{B-}%{B$COLOR1}%{F$COLOR3} ${mon} %{F-}%{B-}%{B$COLOR0} %{B-}%{B$COLOR2} %{B-}"
+						;;
+					[OFU]*)
+						# active desktop
+						[[ $mon = "Laptop" ]] && main_wm_infos="$main_wm_infos%{B$COLOR2}%{F$COLOR3} ${name} %{F-}%{B-}";
+						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$COLOR2}%{F$COLOR3} ${name} %{F-}%{B-}";
+						#desk="%{B-}%{B$COLOR2}%{F$COLOR8}    %{F-}%{B-}"
+						;;
+					o*)
+						# inactive but occupied desktop
+						[[ $mon = "Laptop" ]] && main_wm_infos="$main_wm_infos%{B$COLOR2}%{F$COLOR5} ${name} %{F-}%{B-}";
+						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$COLOR2}%{F$COLOR5} ${name} %{F-}%{B-}";
+						;;
+					f*)
+						# inactive desktop
+						[[ $mon = "Laptop" ]] && main_wm_infos="$main_wm_infos%{B$COLOR2}%{F$COLOR6} ${name} %{F-}%{B-}";
+						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$COLOR2}%{F$COLOR6} ${name} %{F-}%{B-}";
+						;;
+					u*)
+						# urgent desktop
+						[[ $mon = "Laptop" ]] && main_wm_infos="$main_wm_infos%{B$COLOR2}%{F$COLOR4} ${name} %{F-}%{B-}";
+						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$COLOR2}%{F$COLOR4} ${name} %{F-}%{B-}";
+						;;
+					L*)
+						# layout
+						layout=$(printf "%s" "${name}" | sed 's/\(.\).*/\U\1/')
+
+						case $layout in
+							T)
+								layout="%{B$COLOR1}%{F$COLOR3}%{F$COLOR4} T %{F-}%{B-}"
+								;;
+							M)
+								layout="%{B$COLOR1}%{F$COLOR3}%{F$COLOR4} M %{F-}%{B-}"
+								;;
+						esac
+						;;
+				esac
+			done
+			;;
+	esac;
+
+	if [[ $EXT_CONNECTED = 1 ]]; then {
+		printf "%s\n" "%{S0}%{l}$desk$ext_wm_infos%{B$COLOR2} %{B-}$layout $(nowplaying) %{r} $clock%{S1}%{l}$desk$main_wm_infos%{B$COLOR2} %{B-}$layout $(nowplaying) $sys_info"
+	} else {
+		printf "%s\n" "%{S0}%{l}$desk$main_wm_infos%{B$COLOR2} %{B-}$layout $(nowplaying) $sys_info"
+	} fi;
+
+done
+
+# vim: set ft=zsh:
