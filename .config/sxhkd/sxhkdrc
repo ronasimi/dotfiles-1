@@ -1,0 +1,222 @@
+#################
+# BSPWM HOTKEYS #
+#################
+
+# vim: set ft=sxhkdrc:
+
+## System Control --{{{
+
+#ctrl + alt + e
+#bspc quit && pkill bar
+
+ctrl + alt + {_,shift + }e
+   {bspc query -T > "$BSPWM_TREE"; \
+     bspc query -H > "$BSPWM_HISTORY"; \
+      bspc query -S > "$BSPWM_STACK"; \
+       bspc quit && pkill panel,\
+     bspc quit 1 && pkill panel}
+
+KP_Next
+   sleep 0.5 && xset dpms force off
+
+alt + l
+   slimlock
+
+ctrl + alt + l
+   systemctl suspend
+
+ctrl + alt + r
+   systemctl reboot
+
+ctrl + alt + s
+   systemctl poweroff
+
+## --}}}
+
+## Appearance Control --{{{
+
+# Window Control --{{
+super + w
+   bspc window -c
+
+super + y
+   bspc window -w last.manual
+
+super + t
+   bspc desktop -l next
+
+super + b
+   bspc desktop -B
+
+# Control Floating
+super + {_, shift +} f
+   bspc window -t {floating, fullscreen}
+
+super + {grave,Tab}
+   bspc {window, desktop} -f last
+
+super + apostrophe
+   bspc window -s last
+
+super + minus
+   bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 4 ))
+
+super + equal
+   bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 4 ))
+
+# Move window to largest node
+super + alt + space
+   bspc window -s biggest
+
+# Window Focus, Movement
+super + {_,shift + }{h,j,k,l}
+   bspc window -{f,s} {left,down,up,right}
+
+super + shift + {s, p}
+   bspc window focused -t {sticky, private}
+
+super + {Left, Right, Up, Down}
+   xdo move {-x -20, -x +20, -y -20, -y +20}
+
+super + shift + {Left, Right, Up, Down}
+   xdo resize {-w -20, -w +20, -h -20, -h +20}
+
+# Toggle Pseudo Tiling
+super + shift + space
+   bspc window -t pseudo_tiled
+
+# --}}
+
+# Layout Adjusting --{{
+
+# Rotate Windows
+super + {comma, period, slash}
+   bspc window focused -R right {90, 180, 270}
+
+# Rotate Desktop
+super + shift + {comma, period}
+   bspc desktop -R {270, 90}
+
+# Switch adjacent windows position
+super + alt + shift + {comma, period}
+   bspc desktop -F {horizontal,vertical}
+
+# Circulate Leaves
+super + alt + {comma,period}
+   bspc desktop -C {backward,forward}
+
+# Select where to split (manual tiling)
+super + ctrl + {h,j,k,l}
+   bspc window -p {left,down,up,right}
+
+# Erase all manual tiling presets
+super + ctrl + {_,shift + }space
+     bspc {window -p cancel,desktop -c}
+
+# Determines splitting ratio manually
+super + ctrl + {1-9}
+   bspc window -r 0.{1-9}
+
+# Resize Window
+super + alt + {h,j,k,l}
+   bspc window -e {left -10,down +10, up -10, right +10}
+
+super + alt + shift + {h,j,k,l}
+   bspc window -e {right -10, up +10, down -10, left +10}
+
+# Send window to prev/next desktop
+super + alt + bracket{left,right}
+   bspc window -d {prev,next}
+
+super + alt + shift + bracket{left, right}
+   bspc window -m {prev, next}
+
+# --}}
+
+# Workspace Switching Controls --{{
+
+# cycle workspaces
+super + bracket{left,right}
+   bspc desktop -f {prev,next}
+
+# switch workspaces, or send window to appropriate workspace
+super + {_,shift + }{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
+   bspc {desktop -f,window -d} {^1, ^2, ^3, ^4, ^5, ^6, ^7, ^8, ^9, ^10}
+
+~button1
+   bspc pointer -g focus
+
+super + button{1-3}
+   bspc pointer -g {move,resize_side,resize_corner}
+
+super + !button{1-3}
+   bspc pointer -t %i %i
+
+# --}}
+
+## --}}}
+
+## Applications --{{{
+
+# Terminal
+super + {_, shift} + Return
+   bspc rule -a urxvt -o floating=on; \
+   {urxvtc -g 80x15, urxvtc -g 80x15 -e tmux}
+
+# gmrun
+super + r
+	gmrun
+
+# Ranger
+super + {_, shift} + e
+   bspc rule -a urxvt -o pseudo_tiled=on; \
+   {urxvtc  -g 80x15 -e ranger, finder}
+
+# Launcher
+super + space
+   dmenu_run -l 20 -x 55 -y 0 -w 1230 -h 20 -fn fixedZero-medium -nb \#191919 -sb \#252525
+
+# Firefox
+super + c
+   firefox
+
+# Music
+super + m
+   bspc rule -a urxvt -o floating=on; \
+   urxvtc -g 70x12 -e ncmpcpp -c /home/ttzhou/.config/ncmpcpp/config
+   #urxvtc -fn xft:Inconsolata:size=8 -g 75x18+400+300 -e ncmpcpp -c /home/ttzhou/.config/ncmpcpp/config
+
+# mpd controls
+ctrl + {1, 2, 3, 4}
+   mpc {stop, toggle, prev, next}
+
+# weechat
+#super + shift + w
+#  urxvtc -g 90x20 -e weechat-curses
+
+# sxiv
+super + i
+   wallpapers
+
+# make sxhkd reload its configuration files:
+super + Escape
+   pkill -USR1 -x sxhkd
+
+# Volume Control
+XF86AudioRaiseVolume
+   exec dvol -i 6
+
+XF86AudioLowerVolume
+   exec dvol -d 6
+
+XF86AudioMute
+   exec dvol -t
+
+# Brightness Control
+XF86MonBrightnessUp
+   exec dbright up
+
+XF86MonBrightnessDown
+   exec dbright down
+
+## --}}}

@@ -7,9 +7,13 @@
 !.xinitrc
 !README
 
-!.tmux/**
+!.colors/
+!.colors/ttz/
 !.colors/ttz/**
+!.vimperator/
+!.vimperator/colors/
 !.vimperator/colors/ttz.vimp
 !.vimperator/.vimperratorrc
+!.config/
 !.config/**
 

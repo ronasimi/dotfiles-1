@@ -1,0 +1,23 @@
+# Ignore everything here
+*
+
+# except
+
+!.gitignore
+!bspwm/
+!bspwm/*
+!bspwm/*/panel/*
+!mpv/
+!mpv/*
+!ncmpcpp/
+!ncmpcpp/config
+!ranger/
+!ranger/**
+!rtorrent/
+!rtorrent/**
+!sxhkd/
+!sxhkd/**
+!tmux/
+!tmux/**
+!zathura/
+!zathura/**

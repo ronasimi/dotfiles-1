@@ -1,0 +1,8 @@
+# bspwm export vars
+# vim: set ft=zsh:
+
+export BSPWM_SOCKET=/tmp/bspwm-socket
+export PANEL_FIFO=/tmp/panel-fifo
+export BSPWM_TREE="/home/ttzhou/.config/bspwm/bspwm.tree"
+export BSPWM_HISTORY="/home/ttzhou/.config/bspwm/bspwm.history"
+export BSPWM_STACK="/home/ttzhou/.config/bspwm/bspwm.stack"

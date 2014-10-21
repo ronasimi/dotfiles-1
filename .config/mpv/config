@@ -1,0 +1,52 @@
+# vim: syntax=config
+
+################################################################################
+# General
+
+# load config file from file directory, useful for overriding
+#use-filedir-conf=yes
+
+# default value of 320kB is quite low, especially on slow media
+cache=4000
+--hwdec=auto
+
+################################################################################
+# Subtitles setup
+
+# disable retarded VSFilter compatibility
+ass-force-style=Kerning=yes
+
+osd-font="LucidaMacBold"
+osd-font-size=24
+
+sub-text-font="Trebuchet MS:style=bold"
+sub-text-font-size=36
+sub-gray
+
+# make the OSD progress bar be big and centered like in mplayer and mplayer2
+osd-bar-align-y=0
+osd-bar-h=4
+osd-border-size=1
+osd-color='#CCFFFFFF'
+osd-border-color='#99000000'
+
+################################################################################
+# Video Output
+
+#vo=opengl
+#osc=no
+
+################################################################################
+# Audio
+
+# set volume to 100 and use the sound server to actually control the volume
+volume=100
+
+# epic immersion for the poor
+# af-add=bs2b
+
+################################################################################
+# Languages
+
+slang=eng,en
+alang=jp,jpn,en,eng
