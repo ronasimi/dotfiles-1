@@ -19,6 +19,7 @@ split_v 50
 # Run commands.
 run_cmd "vim" 0 # top pane in left pane
 run_cmd "cd /home/ttzhou/documents/projects" 1 # bottom pane in left pane
+run_cmd "clear" 1 # bottom pane in left pane
 
 run_cmd "ncmpcpp" 2 # top pane in right pane
 run_cmd "ncmpcpp" 3 # middle pane in right pane
