@@ -6,6 +6,7 @@
 !.gitignore
 !bspwm/
 !bspwm/*
+!bspwm/*/panel
 !bspwm/*/panel/*
 !mpv/
 !mpv/*
