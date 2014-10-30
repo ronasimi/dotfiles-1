@@ -13,7 +13,7 @@ if [[ ${EXT_CONNECTED} = 1 ]]; then {
 #bspc monitor Laptop --reset-desktops I II III IV V VI
 
 ##############################
-# Restore Session
+#      Restore Session       #
 ##############################
 
 if [[ -s "$BSPWM_TREE" ]] {
@@ -39,6 +39,7 @@ if [[ -s "$BSPWM_STACK" ]] {
 
 bspc config split_ratio							  0.52
 bspc config border_width						  3
+bspc config window_gap							  20
 bspc config borderless_monocle					  true
 bspc config gapless_monocle						  true
 
@@ -59,6 +60,7 @@ bspc config auto_cancel                           true
 bspc config auto_alternate                        false
 bspc config history_aware_focus                   true
 bspc config pointer_follows_monitor               true
+bspc config pointer_follows_focus				  true
 bspc config focus_follows_pointer				  true
 bspc config focus_by_distance					  true
 
@@ -85,8 +87,8 @@ done
 bspc desktop ^6 --toggle floating=on
 
 # External if connected
-if [[ ${EXT_CONNECTED} = 1 ]]; then {
-	for n in 7 8 9; do
+if [[ ${EXT_CONNECTED} -eq 1 ]]; then {
+	for n in 7 8 9 10; do
 		bspc config -d ^$n border_width				  3
 		bspc config -d ^$n window_gap				  20
 		bspc config -d ^$n top_padding                0
@@ -100,17 +102,18 @@ if [[ ${EXT_CONNECTED} = 1 ]]; then {
 
 ## Rules --{{
 
-if [[ ${EXT_CONNECTED} = 1 ]]; then {
-	bspc rule -a Firefox				desktop=^7   follow=true
-	bspc rule -a Gimp					desktop=^10  follow=true	floating=true
-	bspc rule -a Inkscape				desktop=^10  follow=true	floating=true
-	bspc rule -a geogebra-GeoGebra3D	desktop=^10  follow=true	floating=true	border=off
-	bspc rule -a java-lang-Thread		desktop=^9   follow=true	floating=true	border=off
+if [[ ${EXT_CONNECTED} -eq 1 ]]; then {
+	bspc rule -a Firefox					desktop=^7   follow=true
+	bspc rule -a Gimp						desktop=^10  follow=true	floating=true
+	bspc rule -a Inkscape					desktop=^10  follow=true	floating=true
+	bspc rule -a geogebra-GeoGebra3D		desktop=^10  follow=true	floating=true	border=off
+	bspc rule -a sun-awt-X11-XDialogPeer	desktop=^10  follow=true	floating=true	border=off
+	bspc rule -a java-lang-Thread			desktop=^9   follow=true	floating=true	border=off
 } else {
-	bspc rule -a Firefox				desktop=^2   follow=true
-	bspc rule -a Gimp					desktop=^6   follow=true	floating=true
-	bspc rule -a Inkscape				desktop=^6   follow=true	floating=true
-	bspc rule -a geogebra-GeoGebra3D	desktop=^6   follow=true	floating=true	border=off
+	bspc rule -a Firefox				    desktop=^2   follow=true
+	bspc rule -a Gimp					    desktop=^6   follow=true	floating=true
+	bspc rule -a Inkscape				    desktop=^6   follow=true	floating=true
+	bspc rule -a geogebra-GeoGebra3D	    desktop=^6   follow=true	floating=true	border=off
 } fi
 
 bspc rule -a Gvim  desktop=^3   follow=true
@@ -129,7 +132,7 @@ exec pacupdates &
 ## Geogebra fix
 $LOCAL/bin/java_nonparenting_wm_hack.sh
 
-#compton -r 5 -t -8 -l -8 -c &
+compton -b -r 5 -t -8 -l -8 -c -f
 
 # Battery Level Checker
 #lowbattery &

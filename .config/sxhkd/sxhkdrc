@@ -160,8 +160,8 @@ super + !button{1-3}
 
 # Terminal
 super + {_, shift} + Return
-   bspc rule -a urxvt -o floating=on; \
-   {urxvtc -g 80x15, urxvtc -g 80x15 -e tmux}
+   {bspc rule -a urxvt -o floating=on; urxvtc -g 80x15, \
+	urxvtc -g 80x15 -e tmux}
 
 # gmrun
 super + r

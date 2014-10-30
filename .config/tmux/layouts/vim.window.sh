@@ -4,7 +4,7 @@ window_root "~/documents/projects"
 
 # Create new window. If no argument is given, window name will be based on
 # layout file name.
-new_window "vim"
+new_window "dev"
 
 # Split window into panes.
 split_h 30
@@ -31,4 +31,3 @@ run_cmd "man tmux" 4  # bottom pane in right pane
 
 # Set active pane.
 select_pane 0
-rename-window 'programming'

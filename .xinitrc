@@ -10,7 +10,7 @@ fi
 
 ## Dual Monitors Setup
 
-if [[ -z 'xrandr | grep " connected" | grep 'VGA'' ]]; then
+if [[ `xrandr | grep "VGA" | awk '{print $2}'` = "disconnected" ]]; then
 	export EXT_CONNECTED=0;
     echo "No monitor connected"
 else
@@ -35,14 +35,14 @@ xset fp rehash
 ## Source Colors
 xrdb -merge ~/.colors/ttz/.Xres
 
-## Background
-#xsetroot -bg \#688da0 -mod 2 2 &
-$LOCAL/bin/setwall
-
 ## Cursors
 xsetroot -cursor_name left_ptr &
 xset dpms 300 &
-unclutter -noevents -idle 3 -jitter 15 -root -not gimp Firefox &
+unclutter -noevents &
+
+## Background
+#xsetroot -bg \#688da0 -mod 2 2 &
+$LOCAL/bin/setwall
 
 ## Hotkeys
 sxhkd &

@@ -10,16 +10,16 @@ function battery()
 
 	if [[ $STATUS != "Discharging" ]]; then {
 		if [[ $BAT != 100 ]]; then {
-			battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$PURPLE} AC %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+			battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$PURPLE} AC %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $LEVEL %{F-}%{B-}"
 		} else {
-			battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} AC %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+			battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} AC %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $LEVEL %{F-}%{B-}"
 		} fi;
 	} elif [[ $BAT -lt 10 ]]; then {
-		battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$COLOR_WARNING} bat %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+		battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$COLOR_WARNING} bat %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $LEVEL %{F-}%{B-}"
 	} elif [[ $BAT -lt 100 ]]; then {
-			battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$PURPLE} bat %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+			battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$PURPLE} bat %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $LEVEL %{F-}%{B-}"
 	} else {
-		battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} bat %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $LEVEL %{F-}%{B-}"
+		battery="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} bat %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $LEVEL %{F-}%{B-}"
 	} fi; print $battery
 }
 
@@ -29,9 +29,9 @@ function mailcount()
 	# Set Icon
 	#mailicon=""
 	if [[ $MAILCOUNT -eq 0 ]]; then {
-		mail="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} mail %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $(cat /home/ttzhou/.mailcount) %{F-}%{B-}"
+		mail="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} mail %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $(cat /home/ttzhou/.mailcount) %{F-}%{B-}"
 	} else {
-		mail="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} mail %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $(cat /home/ttzhou/.mailcount) %{F-}%{B-}"
+		mail="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} mail %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $(cat /home/ttzhou/.mailcount) %{F-}%{B-}"
 	} fi; print $mail
 }
 
@@ -42,9 +42,9 @@ function volume()
 	# Set Icon
 	#volicon=""
 	if [[ $MUTE -eq "off" ]]; then {
-		volume="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} vol %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $VOLLVL %{F-}%{B-}"
+		volume="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} vol %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $VOLLVL %{F-}%{B-}"
 	} else {
-		volume="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} vol %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $VOLLVL %{F-}%{B-}"
+		volume="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} vol %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $VOLLVL %{F-}%{B-}"
 	} fi; print $volume
 }
 
@@ -54,9 +54,9 @@ function pkgcount()
 	# Set Icon
 	#pkgicon=""
 	if [[ $PKGCOUNT -eq 0 ]]; then {
-		updates="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} pkg %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} ${PKGCOUNT} %{F-}%{B-}"
+		updates="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} pkg %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} ${PKGCOUNT} %{F-}%{B-}"
 	} else {
-		updates="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} pkg %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} ${PKGCOUNT} %{F-}%{B-}"
+		updates="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} pkg %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} ${PKGCOUNT} %{F-}%{B-}"
 	} fi; print $updates
 }
 
@@ -69,14 +69,14 @@ function nowplaying()
 	STATUS=$(mpc status | cut -d '' -f 1 | tr '\n' ' ' | cut -d '[' -f 2 | cut -d ']' -f 1)
 
 	if [ -z "$SONG" ]; then {
-		music="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$COLOR9} mpc %{F-}%{B-}%{F$GRAY}▒%{F-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} artist %{F-}%{B-}%{B$DARK_GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} song %{F-}%{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} album %{F-}%{B-}"
+		music="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$WHITE} mpc %{F-}%{B-}%{F$GRAY}▒%{F-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} artist %{F-}%{B-}%{B$DARK_GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} song %{F-}%{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} album %{F-}%{B-}"
 	} else {
 		case $STATUS in
 			"playing")
-				music="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} mpc %{F-}%{B-}%{F$GRAY}▒%{F-}%{B$GRAY}%{F$COLOR9} ${ARTIST} %{F-}%{B-}%{B$DARK_GRAY}%{F$PURPLE} ${TITLE} %{F-}%{B-}%{B$GRAY}%{F$COLOR9} ${ALBUM} %{F-}%{B-}"
+				music="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} mpc %{F-}%{B-}%{F$GRAY}▒%{F-}%{B$GRAY}%{F$WHITE} ${ARTIST} %{F-}%{B-}%{B$DARK_GRAY}%{F$PURPLE} ${TITLE} %{F-}%{B-}%{B$GRAY}%{F$COLOR9} ${ALBUM} %{F-}%{B-}"
 				;;
 			"paused")
-				music="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$COLOR9} mpc %{F-}%{B-}%{F$GRAY}▒%{F-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} ${ARTIST} %{F-}%{B-}%{B$DARK_GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} ${TITLE} %{F-}%{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} ${ALBUM} %{F-}%{B-}"
+				music="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$WHITE} mpc %{F-}%{B-}%{F$GRAY}▒%{F-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} ${ARTIST} %{F-}%{B-}%{B$DARK_GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} ${TITLE} %{F-}%{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} ${ALBUM} %{F-}%{B-}"
 				;;
 		esac
 	} fi; print $music
@@ -88,10 +88,10 @@ function netwk()
 	#STRENGTH=$(sudo cat /proc/net/wireless | tr '\n' ' ' | sed 's/.*wlp12s0: .*\?\(-[0-9][0-9]\)\. .*/\1/g' | cut -d '%' -f 1)
 
 	if [ -z "$NETWK" ]; then {
-		wifi="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} net %{F-}%{B-}%{F$DARK_GRAY}▒%{F-}%{B$DARK_GRAY}%{F$COLOR9} --- %{F-}%{B-}"
+		wifi="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} net %{F-}%{B-}%{F$DARK_GRAY}▒%{F-}%{B$DARK_GRAY}%{F$WHITE} --- %{F-}%{B-}"
 	} else {
-		wifi="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} net %{F-}%{B-}%{F$DARK_GRAY}▒%{F-}%{B$DARK_GRAY}%{F$COLOR9} $NETWK %{F-}%{B-}"
-		#wifi="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} net %{F-}%{B-}%{F$DARK_GRAY}▒%{F-}%{B$DARK_GRAY}%{F$COLOR9} $NETWK %{F-}%{B-}%{B$GRAY}%{F$COLOR9} $STRENGTH %{F-}%{B-}"
+		wifi="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} net %{F-}%{B-}%{F$DARK_GRAY}▒%{F-}%{B$DARK_GRAY}%{F$WHITE} $NETWK %{F-}%{B-}"
+		#wifi="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$CYAN} net %{F-}%{B-}%{F$DARK_GRAY}▒%{F-}%{B$DARK_GRAY}%{F$WHITE} $NETWK %{F-}%{B-}%{B$GRAY}%{F$COLOR9} $STRENGTH %{F-}%{B-}"
 	} fi; print $wifi
 }
 
@@ -99,9 +99,10 @@ function weather()
 {
 	COND=$(cat /home/ttzhou/.weather | cut -d ':' -f 1)
 	TEMP=$(cat /home/ttzhou/.weather | cut -d ':' -f 2 | cut -d ' ' -f 2)
-	print "%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} $TEMP %{F-}%{B-}%{B$DARK_GRAY}%{F$COLOR9} $COND %{F-}%{B-}"
+	print "%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$SECTION_TITLE_NORMAL_COLOR} $TEMP %{F-}%{B-}%{B$DARK_GRAY}%{F$WHITE} $COND %{F-}%{B-}"
 }
 
+# read and pipe
 while read -r line ; do
 	case $line in
 		S*)
@@ -111,35 +112,38 @@ while read -r line ; do
 		W*)
 			main_wm_infos=""
 			ext_wm_infos=""
-			desk=""
-			line=(${(s/:/)${line[2,-1]}})
-
+			line=(${(s/:/)${line#?}})
 			for item in $line; do
-				name=${item[2,-1]}
+				name=${item#?}
 				case $item in
 					[Mm]*)
 						mon=${name}
-						[[ $item = "MLaptop" ]] && desk="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$WHITE} ${mon} %{F-}%{B-}%{B$LIGHT_GRAY} %{B-}%{B$DARK_GRAY} %{B-}"
-						[[ $item = "MExternal" ]] && desk="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$WHITE} ${mon} %{F-}%{B-}%{B$LIGHT_GRAY} %{B-}%{B$DARK_GRAY} %{B-}"
+						if [[ $item = "MLaptop" ]]; then {
+							main_desk="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$ACTIVE_DESKTOP_COLOR} main %{F-}%{B-}%{B$LIGHT_GRAY} %{B-}%{B$DARK_GRAY} %{B-}"
+							ext_desk="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$INACTIVE_DESKTOP_COLOR} external %{F-}%{B-}%{B$LIGHT_GRAY} %{B-}%{B$DARK_GRAY} %{B-}"
+						} elif [[ $item = "MExternal" ]]; then {
+							main_desk="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$INACTIVE_DESKTOP_COLOR} main %{F-}%{B-}%{B$LIGHT_GRAY} %{B-}%{B$DARK_GRAY} %{B-}"
+							ext_desk="%{B$LIGHT_GRAY} %{B-}%{B$GRAY}%{F$ACTIVE_DESKTOP_COLOR} external %{F-}%{B-}%{B$LIGHT_GRAY} %{B-}%{B$DARK_GRAY} %{B-}"
+						} fi;
 						;;
 					[OFU]*)
 						# active desktop
-						[[ $mon = "Laptop" ]] && main_wm_infos="$main_wm_infos%{B$DARK_GRAY}%{F$WHITE} ${name} %{F-}%{B-}";
-						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$DARK_GRAY}%{F$WHITE} ${name} %{F-}%{B-}";
+						[[ $mon = "Laptop" ]]   && main_wm_infos="$main_wm_infos%{B$DARK_GRAY}%{F$ACTIVE_DESKTOP_COLOR} ${name} %{F-}%{B-}";
+						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$DARK_GRAY}%{F$ACTIVE_DESKTOP_COLOR} ${name} %{F-}%{B-}";
 						;;
 					o*)
 						# inactive but occupied desktop
-						[[ $mon = "Laptop" ]] && main_wm_infos="$main_wm_infos%{B$DARK_GRAY}%{F$OCCUPIED_DESKTOP_COLOR} ${name} %{F-}%{B-}";
+						[[ $mon = "Laptop" ]]   && main_wm_infos="$main_wm_infos%{B$DARK_GRAY}%{F$OCCUPIED_DESKTOP_COLOR} ${name} %{F-}%{B-}";
 						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$DARK_GRAY}%{F$OCCUPIED_DESKTOP_COLOR} ${name} %{F-}%{B-}";
 						;;
 					f*)
 						# inactive desktop
-						[[ $mon = "Laptop" ]] && main_wm_infos="$main_wm_infos%{B$DARK_GRAY}%{F$INACTIVE_DESKTOP_COLOR} ${name} %{F-}%{B-}";
+						[[ $mon = "Laptop" ]]   && main_wm_infos="$main_wm_infos%{B$DARK_GRAY}%{F$INACTIVE_DESKTOP_COLOR} ${name} %{F-}%{B-}";
 						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$DARK_GRAY}%{F$INACTIVE_DESKTOP_COLOR} ${name} %{F-}%{B-}";
 						;;
 					u*)
 						# urgent desktop
-						[[ $mon = "Laptop" ]] && main_wm_infos="$main_wm_infos%{B$DARK_GRAY}%{F$URGENT_DESKTOP_COLOR} ${name} %{F-}%{B-}";
+						[[ $mon = "Laptop" ]]   && main_wm_infos="$main_wm_infos%{B$DARK_GRAY}%{F$URGENT_DESKTOP_COLOR} ${name} %{F-}%{B-}";
 						[[ $mon = "External" ]] && ext_wm_infos="$ext_wm_infos%{B$DARK_GRAY}%{F$URGENT_DESKTOP_COLOR} ${name} %{F-}%{B-}";
 						;;
 					L*)
@@ -161,9 +165,9 @@ while read -r line ; do
 	esac;
 
 	if [[ $EXT_CONNECTED = 1 ]]; then {
-		printf "%s\n" "%{S0}%{l}$desk$ext_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) %{r} $clock%{S1}%{l}$desk$main_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) $sys_info"
+		printf "%s\n" "%{S0}%{l}$ext_desk$ext_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) %{r} $clock%{S1}%{l}$main_desk$main_wm_infos%{B$DARK_GRAY} %{B-}$layout $sys_info"
 	} else {
-		printf "%s\n" "%{S0}%{l}$desk$main_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) $sys_info"
+		printf "%s\n" "%{S0}%{l}$main_desk$main_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) $sys_info"
 	} fi;
 
 done

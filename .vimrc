@@ -16,7 +16,7 @@
 	inoremap ;; <ESC>
 	vnoremap ;; <ESC>
 	nnoremap ;; <ESC>
-	
+
 	" Splits
 	nnoremap <C-j> <C-w><C-j>
 	nnoremap <C-k> <C-w><C-k>
