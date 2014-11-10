@@ -107,7 +107,6 @@ while read -r line ; do
 	case $line in
 		S*)
 			clock="%{B$LIGHT_GRAY} %{B-}%{B$DARK_GRAY}%{F$INACTIVE_DESKTOP_COLOR} $(date +"%b %d") %{F-}%{B-}%{B$GRAY}%{F$INACTIVE_DESKTOP_COLOR} $(date +"%a") %{F-}%{B-}%{B$LIGHT_GRAY}%{F$WHITE}${line#?} %{F-}%{B-}"
-			sys_info="%{r} $(netwk) $(volume) $(pkgcount) $(battery) $(weather) $clock" # Right side sys bar
 			;;
 		W*)
 			main_wm_infos=""
@@ -164,10 +163,12 @@ while read -r line ; do
 			;;
 	esac;
 
+	sys_info="$(netwk) $(volume) $(pkgcount) $(battery) $(weather) $clock" # Right side sys bar
+
 	if [[ $EXT_CONNECTED = 1 ]]; then {
-		printf "%s\n" "%{S0}%{l}$ext_desk$ext_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) %{r} $clock%{S1}%{l}$main_desk$main_wm_infos%{B$DARK_GRAY} %{B-}$layout $sys_info"
+		printf "%s\n" "%{S0}%{l}$ext_desk$ext_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) %{r} $sys_info%{S1}%{l}$main_desk$main_wm_infos%{B$DARK_GRAY} %{B-}$layout %{r}$sys_info"
 	} else {
-		printf "%s\n" "%{S0}%{l}$main_desk$main_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) $sys_info"
+		printf "%s\n" "%{S0}%{l}$main_desk$main_wm_infos%{B$DARK_GRAY} %{B-}$layout $(nowplaying) %{r}$sys_info"
 	} fi;
 
 done

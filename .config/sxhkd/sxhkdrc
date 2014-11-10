@@ -174,7 +174,7 @@ super + {_, shift} + e
 
 # Launcher
 super + space
-   dmenu_run -l 20 -x 55 -y 0 -w 1230 -h 20 -fn fixedZero-medium -nb \#191919 -sb \#252525
+   dmenu_run -p cmd: -q -y 20 -h 20 -fn fixedZero-medium -nb \#191919 -sb \#252525
 
 # Firefox
 super + c

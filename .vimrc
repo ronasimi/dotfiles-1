@@ -83,16 +83,16 @@
     if has('gui_running')
 		let g:airline_powerline_fonts=1
 		let g:airline_theme='powerlineish'
-		"let g:airline_left_sep = ''
-		"let g:airline_right_sep = ''
 		let g:airline#extensions#syntastic#enabled = 1
+		let g:airline#extensions#branch#enabled = 1
 	else
 		let g:airline_powerline_fonts=1
 		let g:airline_left_sep = ''
 		let g:airline_right_sep = ''
 		let g:airline_theme='powerlineish'
-		"let g:airline_symbols.linenr = '␤'
+		let g:airline_symbols.linenr = '␤'
 		let g:airline#extensions#syntastic#enabled = 1
+		let g:airline#extensions#branch#enabled = 1
 	endif
 
 	let g:airline#extensions#default#layout = [
@@ -187,8 +187,8 @@
 
 	" gViM {
     "set guifont=Monaco\ for\ Powerline\ 10
-	set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ 9
-    "set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
+	"set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline\ 9
+	set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
     "set guifont=Monaco\ for\ Powerline\ 10
 	set guioptions-=m
 	set guioptions-=T
